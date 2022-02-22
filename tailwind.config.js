@@ -9,7 +9,7 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
       },
       fontSize: {
-        p: ["24px"],
+        p: ["1.25rem"], // 18px
       },
       colors: {
         body: "#EFEFEF",
