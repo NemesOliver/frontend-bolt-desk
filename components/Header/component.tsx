@@ -10,7 +10,7 @@ export const Header: FC = () => {
         <div className="w-20 h-10">
           <Logo />
         </div>
-        {/* <p> tag will show user */}
+        {/* <p> tag will show user if signed in */}
         <p>John Doe</p>
       </div>
     </header>

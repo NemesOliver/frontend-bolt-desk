@@ -1,10 +1,15 @@
-import axios from "axios";
+import { useState, SyntheticEvent } from "react";
 import type { NextPage } from "next";
-import React, { SyntheticEvent, useState } from "react";
+import Head from "next/head";
+import axios from "axios";
+import { Button, Input } from "../components";
+import EventEmitter from "events";
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // This function will be in Auth context provider
   const [user, setUser] = useState({});
 
   const login = async (e: SyntheticEvent) => {
@@ -17,32 +22,36 @@ const Login: NextPage = () => {
     setUser(user);
   };
 
-
   return (
-    <div>
-      <h2>LOG IN</h2>
-      <form>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button onClick={login}>log in</button>
-      </form>
-    </div>
+    <>
+      <Head>
+        <title>Bolt Desk</title>
+        <meta name="description" content="Your desk booking app" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="max-w-[340px] mx-auto mt-6">
+        <h2 className="text-[24px] my-4">Your company name or logo</h2>
+        <form>
+          <div className="my-6">
+            <Input
+              label="email"
+              type="text"
+              value={email}
+              onChange={(e: any) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col my-6">
+            <Input
+              label="password"
+              type="password"
+              value={password}
+              onChange={(e: any) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button>log in</Button>
+        </form>
+      </main>
+    </>
   );
 };
 
