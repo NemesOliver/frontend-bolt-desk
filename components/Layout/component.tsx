@@ -1,5 +1,11 @@
 import React, { FC } from "react";
+import { Header } from "../../components";
 
 export const Layout: FC = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  );
 };
