@@ -2,12 +2,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import axios from "axios";
 import { Container, Desk, Paper, DatePicker, Chart } from "../components";
-import { useEffect } from "react";
+import { useMediaQuery } from "../hooks";
 
 const Home: NextPage = ({ desks }: any) => {
-  useEffect(() => {
-    console.log(window.matchMedia("(min-width: 768px)"));
-  }, []);
+  const isDesktop = useMediaQuery("(min-width: 814px)");
+
+  console.log(isDesktop);
 
   return (
     <>
@@ -22,37 +22,15 @@ const Home: NextPage = ({ desks }: any) => {
           {/* GRID ITEM DESKS*/}
 
           <section className="max-h-[calc(100vh-60px)] ">
-            <Paper>
-              <p className="text-[18px]">
-                Pick a date and hover over a desk to book it, or see who has
-                currently booked it.
-              </p>
-            </Paper>
+            {isDesktop && (
+              <Paper>
+                <p className="text-[18px]">
+                  Pick a date and hover over a desk to book it, or see who has
+                  currently booked it.
+                </p>
+              </Paper>
+            )}
 
-            {desks.map((desk: any) => (
-              <Desk
-                key={desk._id}
-                name={desk.name}
-                isBooked={desk.is_booked}
-                bookedBy={desk.booked_by}
-              />
-            ))}
-            {desks.map((desk: any) => (
-              <Desk
-                key={desk._id}
-                name={desk.name}
-                isBooked={desk.is_booked}
-                bookedBy={desk.booked_by}
-              />
-            ))}
-            {desks.map((desk: any) => (
-              <Desk
-                key={desk._id}
-                name={desk.name}
-                isBooked={desk.is_booked}
-                bookedBy={desk.booked_by}
-              />
-            ))}
             {desks.map((desk: any) => (
               <Desk
                 key={desk._id}
