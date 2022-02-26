@@ -19,6 +19,7 @@ module.exports = {
         background: "#FFFFFF",
         primary: "#0A2637",
         secondary: "#F89B1C",
+        primaryHover: "#0C486C",
       },
     },
   },

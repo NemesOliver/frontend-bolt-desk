@@ -27,7 +27,7 @@ export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
           <button
             disabled={isBooked}
             onClick={() => console.log(name)}
-            className="bg-primary text-[16px] text-white px-4 rounded-sm active:scale-95 transition-all disabled:bg-gray-300"
+            className="bg-primary text-[16px] text-white px-4 rounded-sm hover:bg-primaryHover active:scale-95 transition-all disabled:bg-gray-300"
           >
             BOOK
           </button>

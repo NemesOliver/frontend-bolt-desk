@@ -14,8 +14,6 @@ import { useMediaQuery } from "../hooks";
 const Home: NextPage = ({ desks }: any) => {
   const isDesktop = useMediaQuery("(min-width: 814px)");
 
-  console.log(isDesktop);
-
   return (
     <>
       <Head>
