@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import axios from "axios";
-import { Container } from "../components";
+import { Container, Desk } from "../components";
 
 const Home: NextPage = ({ desks }: any) => {
   console.log(desks);
@@ -18,49 +18,21 @@ const Home: NextPage = ({ desks }: any) => {
         <div className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6">
           {/* GRID ITEM */}
           <div>
-            {/* Desk card */}
-            <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
-              <p className="cursor-default">Desk 1</p>
-              <div className="flex items-center">
-                <p className="text-[14px] cursor-default">Availble</p>
-                <div className="w-[8px] h-[8px] bg-green-600 ml-3 rounded-full mt-[2px]"></div>
-              </div>
+            <div className="bg-background rounded-sm shadow-md mb-2 py-2 px-4">
+              Pick a date and hover over a desk to book it, or see who has
+              currently booked it.
             </div>
-            {/* Desk card */}
-            <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
-              <p className="cursor-default">Desk 1</p>
-              <div className="flex items-center">
-                <p className="text-[14px] cursor-default">Availble</p>
-                <div className="w-[8px] h-[8px] bg-green-600 ml-3 rounded-full mt-[2px]"></div>
-              </div>
-            </div>
-            {/* Desk card */}
-            <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
-              <p className="cursor-default">Desk 1</p>
-              <div className="flex items-center">
-                <p className="text-[14px] cursor-default">Availble</p>
-                <div className="w-[8px] h-[8px] bg-green-600 ml-3 rounded-full mt-[2px]"></div>
-              </div>
-            </div>
-            {/* Desk card */}
-            <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
-              <p className="cursor-default">Desk 1</p>
-              <div className="flex items-center">
-                <p className="text-[14px] cursor-default">Availble</p>
-                <div className="w-[8px] h-[8px] bg-green-600 ml-3 rounded-full mt-[2px]"></div>
-              </div>
-            </div>
-            {/* Desk card */}
-            <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
-              <p className="cursor-default">Desk 1</p>
-              <div className="flex items-center">
-                <p className="text-[14px] cursor-default">Availble</p>
-                <div className="w-[8px] h-[8px] bg-green-600 ml-3 rounded-full mt-[2px]"></div>
-              </div>
-            </div>
+            {desks.map((desk: any) => (
+              <Desk
+                key={desk._id}
+                name={desk.name}
+                isBooked={desk.is_booked}
+                bookedBy={desk.booked_by}
+              />
+            ))}
           </div>
           {/* GRID ITEM */}
-          <div className="bg-green-200"></div>
+          <div></div>
         </div>
       </Container>
     </>
