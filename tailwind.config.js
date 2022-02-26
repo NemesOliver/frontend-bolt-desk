@@ -4,12 +4,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "814px",
+    },
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
       fontSize: {
-        p: ["1.25rem"], // 18px
+        p: ["1.25rem"], // 20px
       },
       colors: {
         body: "#EFEFEF",

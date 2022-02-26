@@ -8,8 +8,8 @@ type Props = {
 
 export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
   return (
-    <div className="relative group z-30">
-      <div className=" cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
+    <div className="relative group z-30 ">
+      <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
         <p className="cursor-pointer">{name}</p>
         <div className="flex items-center">
           <p className="text-[14px] cursor-pointer">

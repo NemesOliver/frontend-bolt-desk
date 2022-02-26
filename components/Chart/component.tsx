@@ -19,7 +19,7 @@ export const Chart: FC<Props> = () => {
           data={data}
           margin={{
             top: 25,
-            right: 0,
+            right: 9,
             left: 0,
             bottom: 20,
           }}

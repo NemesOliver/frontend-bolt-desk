@@ -2,9 +2,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import axios from "axios";
 import { Container, Desk, Paper, DatePicker, Chart } from "../components";
+import { useEffect } from "react";
 
 const Home: NextPage = ({ desks }: any) => {
-  console.log(desks);
+  useEffect(() => {
+    console.log(window.matchMedia("(min-width: 768px)"));
+  }, []);
 
   return (
     <>
@@ -15,13 +18,41 @@ const Home: NextPage = ({ desks }: any) => {
       </Head>
       <Container>
         {/* GRID */}
-        <main className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6">
+        <main className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6 h-[calc(100vh-70px)] ">
           {/* GRID ITEM DESKS*/}
-          <section>
+
+          <section className="max-h-[calc(100vh-60px)] ">
             <Paper>
-              Pick a date and hover over a desk to book it, or see who has
-              currently booked it.
+              <p className="text-[18px]">
+                Pick a date and hover over a desk to book it, or see who has
+                currently booked it.
+              </p>
             </Paper>
+
+            {desks.map((desk: any) => (
+              <Desk
+                key={desk._id}
+                name={desk.name}
+                isBooked={desk.is_booked}
+                bookedBy={desk.booked_by}
+              />
+            ))}
+            {desks.map((desk: any) => (
+              <Desk
+                key={desk._id}
+                name={desk.name}
+                isBooked={desk.is_booked}
+                bookedBy={desk.booked_by}
+              />
+            ))}
+            {desks.map((desk: any) => (
+              <Desk
+                key={desk._id}
+                name={desk.name}
+                isBooked={desk.is_booked}
+                bookedBy={desk.booked_by}
+              />
+            ))}
             {desks.map((desk: any) => (
               <Desk
                 key={desk._id}
@@ -31,10 +62,13 @@ const Home: NextPage = ({ desks }: any) => {
               />
             ))}
           </section>
-          {/* GRID ITEM SCREEN*/}
-          <section className="ml-6">
+
+          {/* GRID ITEM SCREEN - hidden on small devices*/}
+          <section className="ml-6 hidden sm:block">
             <DatePicker />
-            <p className="mb-2 mt-6 ">Average amount of people in the office</p>
+            <p className="mb-2 mt-6 text-[18px]">
+              Average amount of people in the office
+            </p>
             <Paper>
               <Chart />
             </Paper>
