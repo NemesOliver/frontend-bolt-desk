@@ -1,7 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import axios from "axios";
-import { Container, Desk, Paper, DatePicker, Chart } from "../components";
+import {
+  Container,
+  Desk,
+  DeskMobile,
+  Paper,
+  DatePicker,
+  Chart,
+} from "../components";
 import { useMediaQuery } from "../hooks";
 
 const Home: NextPage = ({ desks }: any) => {
@@ -31,14 +38,31 @@ const Home: NextPage = ({ desks }: any) => {
               </Paper>
             )}
 
-            {desks.map((desk: any) => (
-              <Desk
-                key={desk._id}
-                name={desk.name}
-                isBooked={desk.is_booked}
-                bookedBy={desk.booked_by}
-              />
-            ))}
+            {/* Date picker on mobile */}
+            {!isDesktop && (
+              <div className="mb-2">
+                <DatePicker />
+              </div>
+            )}
+
+            {/* Render desks */}
+            {desks.map((desk: any) => {
+              return isDesktop ? (
+                <Desk
+                  key={desk._id}
+                  name={desk.name}
+                  isBooked={desk.is_booked}
+                  bookedBy={desk.booked_by}
+                />
+              ) : (
+                <DeskMobile
+                  key={desk._id}
+                  name={desk.name}
+                  isBooked={desk.is_booked}
+                  bookedBy={desk.booked_by}
+                />
+              );
+            })}
           </section>
 
           {/* GRID ITEM SCREEN - hidden on small devices*/}
