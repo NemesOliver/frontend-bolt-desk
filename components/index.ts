@@ -4,3 +4,5 @@ export * from "./Container";
 export * from "./Button";
 export * from "./Input";
 export * from "./Desk";
+export * from "./Paper";
+export * from "./DatePicker";

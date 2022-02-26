@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import axios from "axios";
-import { Container, Desk } from "../components";
+import { Container, Desk, Paper, DatePicker } from "../components";
 
 const Home: NextPage = ({ desks }: any) => {
   console.log(desks);
@@ -16,12 +16,12 @@ const Home: NextPage = ({ desks }: any) => {
       <Container>
         {/* GRID */}
         <div className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6">
-          {/* GRID ITEM */}
+          {/* GRID ITEM DESKS*/}
           <div>
-            <div className="bg-background rounded-sm shadow-md mb-2 py-2 px-4">
+            <Paper>
               Pick a date and hover over a desk to book it, or see who has
               currently booked it.
-            </div>
+            </Paper>
             {desks.map((desk: any) => (
               <Desk
                 key={desk._id}
@@ -31,8 +31,10 @@ const Home: NextPage = ({ desks }: any) => {
               />
             ))}
           </div>
-          {/* GRID ITEM */}
-          <div></div>
+          {/* GRID ITEM SCREEN*/}
+          <div className="ml-6">
+            <DatePicker />
+          </div>
         </div>
       </Container>
     </>
