@@ -1,14 +1,16 @@
 import type { AppProps } from "next/app";
 import { Layout } from "../components";
-import { AuthContextProvider } from "../context";
+import { AuthContextProvider, ModalContextProvider } from "../context";
 import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthContextProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ModalContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ModalContextProvider>
     </AuthContextProvider>
   );
 }
