@@ -13,6 +13,7 @@ type User = {
 export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const [isLoading, setIsloading] = useState(false);
   const Router = useRouter();
 
   useEffect(() => {
@@ -32,6 +33,11 @@ export const AuthContextProvider: FC = ({ children }) => {
     }
   }, []);
 
+  /**
+   * Fetch user from backend
+   *
+   * @param id
+   */
   const getUser = async (id: string) => {
     try {
       const { data } = await backend.get(`/users/${id}`);
@@ -48,15 +54,19 @@ export const AuthContextProvider: FC = ({ children }) => {
    * @param password
    */
   const login = async (email: string, password: string) => {
+    setIsloading(true);
+
     try {
       const { data } = await backend.post("/users/login", { email, password });
 
-      setUser(data);
+      setUser({ email: data.user.email, _id: data.user._id });
       setIsLoggedIn(true);
+      setIsloading(false);
 
       Router.push("/");
     } catch (e) {
       console.warn(e);
+      setIsloading(false);
     }
   };
 
@@ -66,6 +76,7 @@ export const AuthContextProvider: FC = ({ children }) => {
         isLoggedIn,
         user,
         login,
+        isLoading,
       }}
     >
       {children}
