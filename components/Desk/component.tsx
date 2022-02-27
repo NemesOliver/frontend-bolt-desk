@@ -3,7 +3,7 @@ import { Props } from "./props";
 import { ModalContext } from "../../context";
 
 export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
-  const { triggerModal } = useContext(ModalContext);
+  const { triggerModal, bookedDate } = useContext(ModalContext);
 
   return (
     <div className="relative group z-30 ">
@@ -25,7 +25,9 @@ export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
             disabled={isBooked}
             onClick={() =>
               triggerModal(
-                `Are you sure that you want to book ${name} on Wednesday 21st of November?`
+                `Are you sure that you want to book ${name} on ${new Date(
+                  bookedDate
+                ).toDateString()}?`
               )
             }
             className="bg-primary text-[12px] text-white px-4 rounded-sm hover:bg-primaryHover active:scale-95 transition-all duration-300 disabled:bg-gray-300"
