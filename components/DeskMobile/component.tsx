@@ -24,14 +24,14 @@ export const DeskMobile: FC<Props> = ({ name, isBooked, bookedBy }) => {
           </div>
         </div>
         <div className="cursor-default flex justify-between items-center">
-          <p className="pr-6 text-[16px]">{isBooked ? bookedBy : "Empty"}</p>
           <button
             disabled={isBooked}
             onClick={() => console.log(name)}
-            className="bg-primary text-[16px] text-white px-10 py-1 rounded-sm hover:bg-primaryHover active:scale-95 transition-all disabled:bg-gray-300"
+            className="bg-primary text-[12px] text-white px-10 py-1 rounded-sm hover:bg-primaryHover active:scale-95 transition-all duration-300 disabled:bg-gray-300"
           >
             BOOK
           </button>
+          <p className="pr-6 text-[16px]">{isBooked ? bookedBy : "Empty"}</p>
         </div>
       </div>
     </div>

@@ -23,14 +23,14 @@ export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
         </div>
         {/* Hidden submenu - showed on Desktop*/}
         <div className="cursor-default hidden absolute left-[280px] min-w-[332px] border scale-0 sm:flex justify-between bg-background rounded-sm shadow-xl py-2 px-4  group-hover:scale-100 transition-all duration-300 ease-in-out delay-75">
-          <p className="pr-6">{isBooked ? bookedBy : "Empty"}</p>
           <button
             disabled={isBooked}
             onClick={() => console.log(name)}
-            className="bg-primary text-[16px] text-white px-4 rounded-sm hover:bg-primaryHover active:scale-95 transition-all disabled:bg-gray-300"
+            className="bg-primary text-[12px] text-white px-4 rounded-sm hover:bg-primaryHover active:scale-95 transition-all duration-300 disabled:bg-gray-300"
           >
             BOOK
           </button>
+          <p>{isBooked ? bookedBy : "Empty"}</p>
         </div>
       </div>
     </div>
