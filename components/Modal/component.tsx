@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
 export const Modal: FC = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const closeModal = () => setOpen(false);
 

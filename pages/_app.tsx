@@ -1,12 +1,15 @@
 import type { AppProps } from "next/app";
 import { Layout } from "../components";
+import { AuthContextProvider } from "../context";
 import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AuthContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthContextProvider>
   );
 }
 

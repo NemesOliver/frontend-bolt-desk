@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
-import axios from "axios";
+import { getCookie } from "cookies-next";
 import {
   Container,
   Desk,
@@ -10,9 +10,14 @@ import {
   Chart,
 } from "../components";
 import { useMediaQuery } from "../hooks";
+import { backend, withAuth } from "../libs";
 
 const Home: NextPage = ({ desks }: any) => {
   const isDesktop = useMediaQuery("(min-width: 814px)");
+
+  if (!desks) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -79,19 +84,18 @@ const Home: NextPage = ({ desks }: any) => {
   );
 };
 
-export default Home;
+export default withAuth(Home);
 
-export async function getServerSideProps(ctx: any) {
-  const token = ctx.req.headers.cookie;
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const token = getCookie("jwt", { req, res });
 
   try {
-    const { data } = await axios.get("http://localhost:5000/v1/desks", {
-      withCredentials: true,
-      headers: { Authorization: token.substring(4) }, // Must be set in header due to how SSR works or useSWR can be used instead
+    const { data } = await backend.get("/desks", {
+      headers: { Authorization: token }, // Must be set in header due to how SSR works or useSWR can be used instead
     });
 
     return { props: { desks: data } };
   } catch (error) {
     return { props: {} };
   }
-}
+};
