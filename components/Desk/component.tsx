@@ -1,12 +1,10 @@
-import React, { FC } from "react";
-
-type Props = {
-  name: string;
-  isBooked: boolean;
-  bookedBy: string;
-};
+import { FC, useContext } from "react";
+import { Props } from "./props";
+import { ModalContext } from "../../context";
 
 export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
+  const { triggerModal } = useContext(ModalContext);
+
   return (
     <div className="relative group z-30 ">
       <div className="cursor-pointer bg-background shadow-md hover:scale-[1.03] transition-transform rounded-sm flex justify-between items-center py-2 px-3 mb-2">
@@ -25,7 +23,11 @@ export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
         <div className="cursor-default hidden absolute left-[280px] min-w-[332px] border scale-0 sm:flex justify-between bg-background rounded-sm shadow-xl py-2 px-4  group-hover:scale-100 transition-all duration-300 ease-in-out delay-75">
           <button
             disabled={isBooked}
-            onClick={() => console.log(name)}
+            onClick={() =>
+              triggerModal(
+                `Are you sure that you want to book ${name} on Wednesday 21st of November?`
+              )
+            }
             className="bg-primary text-[12px] text-white px-4 rounded-sm hover:bg-primaryHover active:scale-95 transition-all duration-300 disabled:bg-gray-300"
           >
             BOOK
