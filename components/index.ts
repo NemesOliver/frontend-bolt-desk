@@ -8,3 +8,4 @@ export * from "./DeskMobile";
 export * from "./Paper";
 export * from "./DatePicker";
 export * from "./Chart";
+export * from "./Modal";
