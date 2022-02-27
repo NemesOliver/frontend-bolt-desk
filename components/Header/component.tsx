@@ -4,7 +4,6 @@ import { Logo } from "./libs";
 
 export const Header: FC = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <header className="bg-background shadow-md h-10 ">
@@ -12,8 +11,7 @@ export const Header: FC = () => {
         <div className="w-20 h-10">
           <Logo />
         </div>
-        {/* <p> tag will show user if signed in */}
-        <p>John Doe</p>
+        {user && <p>{user.email}</p>}
       </div>
     </header>
   );
