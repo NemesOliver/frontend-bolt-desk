@@ -8,6 +8,7 @@ import {
   Paper,
   DatePicker,
   Chart,
+  Backdrop,
 } from "../components";
 import { useMediaQuery } from "../hooks";
 import { backend, withAuth } from "../libs";
@@ -26,6 +27,7 @@ const Home: NextPage = ({ desks }: any) => {
         <meta name="description" content="Your desk booking app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Backdrop />
       <Container>
         {/* GRID */}
         <main className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6 h-[calc(100vh-70px)] ">

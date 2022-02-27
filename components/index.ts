@@ -9,3 +9,4 @@ export * from "./Paper";
 export * from "./DatePicker";
 export * from "./Chart";
 export * from "./Modal";
+export * from "./Backdrop";
