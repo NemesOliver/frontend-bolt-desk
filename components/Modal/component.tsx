@@ -14,9 +14,9 @@ export const Modal: FC = () => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-background max-w-lg mx-auto px-8 py-4 rounded-sm shadow-md"
+            className="bg-background max-w-lg mx-auto px-8 py-4 rounded-sm shadow-xl"
           >
-            <h2>Confirm booking</h2>
+            <h2 className="text-[24px]">Confirm booking</h2>
             <p className="my-4 text-[16px]">
               Are you sure you want to book a Desk 1 for Wednesday 21st of
               October?
