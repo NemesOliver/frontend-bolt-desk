@@ -23,7 +23,7 @@ const Home: NextPage = ({ desks }: any) => {
   return (
     <>
       <Head>
-        <title>Bolt Desk</title>
+        <title>Bolt Desk - Dashboard</title>
         <meta name="description" content="Your desk booking app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

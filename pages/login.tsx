@@ -8,12 +8,14 @@ import { AuthContext } from "../context";
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     login(email, password);
   };
+
+  console.log(user);
 
   return (
     <>
