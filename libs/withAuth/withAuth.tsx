@@ -1,6 +1,7 @@
 import { FunctionComponent, useContext } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../context";
+import { Backdrop } from "../../components";
 
 export const withAuth = (Component: FunctionComponent) => {
   return function Wrapper(props: any) {
@@ -11,7 +12,7 @@ export const withAuth = (Component: FunctionComponent) => {
     if (typeof window !== "undefined") {
       // if loading show loader
       if (isLoggedIn === null) {
-        return <div>Loading..</div>;
+        return <Backdrop />;
       }
 
       // if no user redirect to /login

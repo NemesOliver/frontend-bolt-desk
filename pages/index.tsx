@@ -17,7 +17,7 @@ const Home: NextPage = ({ desks }: any) => {
   const isDesktop = useMediaQuery("(min-width: 814px)");
 
   if (!desks) {
-    return <div>Loading...</div>;
+    return <Backdrop />;
   }
 
   return (
@@ -27,7 +27,6 @@ const Home: NextPage = ({ desks }: any) => {
         <meta name="description" content="Your desk booking app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Backdrop />
       <Container>
         {/* GRID */}
         <main className="grid grid-cols-[1fr] sm:grid-cols-[260px_1fr] mt-6 h-[calc(100vh-70px)] ">
