@@ -12,7 +12,7 @@ export const Modal: FC = () => {
           className="bg-backdrop absolute top-0 left-0 h-screen w-screen z-40 grid items-center"
         >
           <div
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()} // Stop event bubbling
             className="bg-background max-w-lg mx-auto px-8 py-4 rounded-sm shadow-xl"
           >
             <h2 className="text-[24px]">Confirm booking</h2>

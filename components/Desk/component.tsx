@@ -1,9 +1,10 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import { Props } from "./props";
-import { ModalContext } from "../../context";
+import { ModalContext, DateContext } from "../../context";
 
 export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
-  const { triggerModal, bookedDate } = useContext(ModalContext);
+  const { triggerModal } = useContext(ModalContext);
+  const { date } = useContext(DateContext);
 
   return (
     <div className="relative group z-30 ">
@@ -26,7 +27,7 @@ export const Desk: FC<Props> = ({ name, isBooked, bookedBy }) => {
             onClick={() =>
               triggerModal(
                 `Are you sure that you want to book ${name} on ${new Date(
-                  bookedDate
+                  date
                 ).toDateString()}?`
               )
             }

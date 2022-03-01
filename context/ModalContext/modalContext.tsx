@@ -6,9 +6,6 @@ export const ModalContext = createContext({} as ContextProps);
 export const ModalContextProvider: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [bookedDate, setBookedDate] = useState(
-    new Date().toISOString().substring(0, 10)
-  );
 
   const onClose = () => setOpen(false);
 
@@ -24,8 +21,6 @@ export const ModalContextProvider: FC = ({ children }) => {
         onClose,
         triggerModal,
         message,
-        setBookedDate,
-        bookedDate,
       }}
     >
       {children}

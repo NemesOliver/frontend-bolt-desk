@@ -8,6 +8,8 @@ export const withAuth = (Component: FunctionComponent) => {
     const Router = useRouter();
     const { isLoggedIn } = useContext(AuthContext);
 
+    // Currently triggering an error - i guess
+
     //Check if we are on client
     if (typeof window !== "undefined") {
       // if loading show loader

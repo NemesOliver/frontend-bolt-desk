@@ -17,19 +17,16 @@ export const AuthContextProvider: FC = ({ children }) => {
   const Router = useRouter();
 
   useEffect(() => {
-    // See if we are on client
-    if (typeof window !== "undefined") {
-      const cookies = getCookies();
+    const cookies = getCookies();
 
-      // if auth cookie exists, user should stay logged in, else we will log user out,
-      // we are checking for auth cookie as jwt cookie is httpOnly, therefore can not be accesed by frontend js
-      if (cookies.auth) {
-        setIsLoggedIn(true);
-        // If logged in fetch user
-        getUser(cookies.user);
-      } else {
-        setIsLoggedIn(false);
-      }
+    // if auth cookie exists, user should stay logged in, else we will log user out,
+    // we are checking for auth cookie as jwt cookie is httpOnly, therefore can not be accesed by frontend js
+    if (cookies.auth) {
+      setIsLoggedIn(true);
+      // If logged in fetch user
+      getUser(cookies.user);
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
