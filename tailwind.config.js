@@ -20,7 +20,7 @@ module.exports = {
         primary: "#0A2637",
         secondary: "#F89B1C",
         primaryHover: "#0C486C",
-        backdrop: "rgba(0, 0, 0, 0.6)",
+        backdrop: "rgba(0, 0, 0, 0.3)",
       },
     },
   },

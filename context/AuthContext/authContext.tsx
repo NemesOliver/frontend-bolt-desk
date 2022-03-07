@@ -8,6 +8,7 @@ export const AuthContext = createContext<any>({});
 type User = {
   email: string;
   _id: string;
+  name: string;
 };
 
 export const AuthContextProvider: FC = ({ children }) => {
@@ -39,7 +40,7 @@ export const AuthContextProvider: FC = ({ children }) => {
     try {
       const { data } = await backend.get(`/users/${id}`);
 
-      setUser({ email: data.email, _id: data._id });
+      setUser({ email: data.email, _id: data._id, name: data.name });
     } catch (e) {
       console.warn(e);
     }
@@ -56,7 +57,7 @@ export const AuthContextProvider: FC = ({ children }) => {
     try {
       const { data } = await backend.post("/users/login", { email, password });
 
-      setUser({ email: data.user.email, _id: data.user._id });
+      setUser({ email: data.user.email, _id: data.user._id, name: data.name });
       setIsLoggedIn(true);
       setIsloading(false);
 

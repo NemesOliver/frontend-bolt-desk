@@ -11,7 +11,7 @@ export const Header: FC = () => {
         <div className="w-20 h-10">
           <Logo />
         </div>
-        {user && <p>{user.email}</p>}
+        {user && <p>{user.name}</p>}
       </div>
     </header>
   );

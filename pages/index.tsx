@@ -1,4 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
+import { useContext, useEffect } from "react";
 import Head from "next/head";
 import { getCookie } from "cookies-next";
 import {
@@ -12,9 +13,11 @@ import {
 } from "../components";
 import { useMediaQuery } from "../hooks";
 import { backend, withAuth } from "../libs";
+import { DateContext } from "../context";
 
-const Home: NextPage = ({ desks }: any) => {
+const Home: NextPage = ({ desks, bookings }: any) => {
   const isDesktop = useMediaQuery("(min-width: 814px)");
+  const { date } = useContext(DateContext);
 
   if (!desks) {
     return <Backdrop />;
@@ -51,11 +54,16 @@ const Home: NextPage = ({ desks }: any) => {
 
             {/* Render desks */}
             {desks.map((desk: any) => {
+              const filteredBookings = bookings.filter(
+                (booking: any) => booking.date === date
+              );
+
               return isDesktop ? (
                 <Desk
                   key={desk._id}
+                  id={desk._id}
                   name={desk.name}
-                  isBooked={desk.is_booked}
+                  filteredBookings={filteredBookings}
                   bookedBy={desk.booked_by}
                 />
               ) : (
@@ -69,7 +77,7 @@ const Home: NextPage = ({ desks }: any) => {
             })}
           </section>
 
-          {/* GRID ITEM SCREEN - hidden on small devices*/}
+          {/* GRID ITEM SCREEN - hidden on small devices */}
           <section className="ml-6 hidden sm:block">
             <DatePicker />
             <p className="mb-2 mt-6 text-[18px]">
@@ -91,11 +99,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const token = getCookie("jwt", { req, res });
 
   try {
-    const { data } = await backend.get("/desks", {
+    const desks = await backend.get("/desks", {
       headers: { Authorization: token }, // Must be set in header due to how SSR works or useSWR can be used instead
     });
 
-    return { props: { desks: data } };
+    const bookings = await backend.get("/bookings");
+
+    return { props: { desks: desks.data, bookings: bookings.data } };
   } catch (error) {
     return { props: {} };
   }

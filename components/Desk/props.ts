@@ -1,5 +1,6 @@
 export type Props = {
   name: string;
-  isBooked: boolean;
+  id: string;
   bookedBy: string;
+  filteredBookings: any;
 };

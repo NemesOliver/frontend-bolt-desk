@@ -1,8 +1,32 @@
 import { FC, useContext } from "react";
-import { ModalContext } from "../../context";
+import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
+import { AuthContext, DateContext, ModalContext } from "../../context";
+import { backend } from "../../libs";
 
-export const Modal: FC = () => {
-  const { open, onClose, message } = useContext(ModalContext);
+export const Modal: FC<any> = () => {
+  const { open, onClose, message, desk } = useContext(ModalContext);
+  const { user } = useContext(AuthContext);
+  const { date } = useContext(DateContext);
+  const router = useRouter();
+
+  // Isolate me later
+  const bookDesk = async () => {
+    const userRef = getCookie("user");
+
+    try {
+      await backend.post("/bookings/create", {
+        date,
+        booked_by: user.name,
+        userRef,
+        deskRef: desk,
+      });
+      onClose();
+      router.push("/");
+    } catch (e) {
+      console.warn(e);
+    }
+  };
 
   return (
     <>
@@ -18,7 +42,10 @@ export const Modal: FC = () => {
             <h2 className="text-[24px]">Confirm booking</h2>
             <p className="my-4 text-[16px]">{message}</p>
             <div className="float-right">
-              <button className="mr-6 bg-green-700 rounded-sm py-1 px-3 text-[14px] text-white hover:bg-green-500 active:scale-95 transition-all duration-200">
+              <button
+                onClick={bookDesk}
+                className="mr-6 bg-green-700 rounded-sm py-1 px-3 text-[14px] text-white hover:bg-green-500 active:scale-95 transition-all duration-200"
+              >
                 Confirm
               </button>
               <button
