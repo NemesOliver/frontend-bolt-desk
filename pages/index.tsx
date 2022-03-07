@@ -64,14 +64,13 @@ const Home: NextPage = ({ desks, bookings }: any) => {
                   id={desk._id}
                   name={desk.name}
                   filteredBookings={filteredBookings}
-                  bookedBy={desk.booked_by}
                 />
               ) : (
                 <DeskMobile
                   key={desk._id}
                   name={desk.name}
-                  isBooked={desk.is_booked}
-                  bookedBy={desk.booked_by}
+                  id={desk._id}
+                  filteredBookings={filteredBookings}
                 />
               );
             })}

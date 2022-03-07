@@ -8,6 +8,7 @@ export const Desk: FC<Props> = ({ name, filteredBookings, id }) => {
   const { date } = useContext(DateContext);
 
   useEffect(() => {
+    // Filter all through all bookings and return only ones that match desk
     const booking = filteredBookings.filter(
       (booking: any) => booking.deskRef === id
     );

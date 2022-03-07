@@ -8,7 +8,7 @@ type DateProps = {
 export const DateContext = createContext({} as DateProps);
 
 export const DateContextProvider: FC = ({ children }) => {
-  const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const [date, setDate] = useState("2022-03-07"); // For demo set date to 2022-03-07
 
   return (
     <DateContext.Provider value={{ date, setDate }}>
