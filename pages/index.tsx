@@ -106,6 +106,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
     return { props: { desks, bookings } };
   } catch (error) {
-    return { props: { error } };
+    return { props: {} };
   }
 };
