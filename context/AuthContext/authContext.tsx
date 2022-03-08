@@ -23,13 +23,21 @@ export const AuthContextProvider: FC = ({ children }) => {
     // if auth cookie exists, user should stay logged in, else we will log user out,
     // we are checking for auth cookie as jwt cookie is httpOnly, therefore can not be accesed by frontend js
     if (cookies.auth) {
-      setIsLoggedIn(true);
       // If logged in fetch user
-      getUser(cookies.user);
+
+      setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
   }, []);
+
+  useEffect(() => {
+    const cookies = getCookies();
+
+    if (isLoggedIn) {
+      getUser(cookies.user);
+    }
+  }, [isLoggedIn]);
 
   /**
    * Fetch user from backend
