@@ -40,7 +40,7 @@ const Home: NextPage = ({ desks, bookings }: any) => {
               <Paper>
                 <p className="text-[18px]">
                   Pick a date and hover over a desk to book it, or see who has
-                  currently booked it.
+                  booked it.
                 </p>
               </Paper>
             )}
@@ -98,14 +98,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const token = getCookie("jwt", { req, res });
 
   try {
-    const desks = await backend.get("/desks", {
+    const { data: desks } = await backend.get("/desks", {
       headers: { Authorization: token }, // Must be set in header due to how SSR works or useSWR can be used instead
     });
 
-    const bookings = await backend.get("/bookings");
+    const { data: bookings } = await backend.get("/bookings");
 
-    return { props: { desks: desks.data, bookings: bookings.data } };
+    return { props: { desks, bookings } };
   } catch (error) {
-    return { props: {} };
+    return { props: { error } };
   }
 };

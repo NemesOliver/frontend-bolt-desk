@@ -15,6 +15,7 @@ export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = useState("");
   const Router = useRouter();
 
   useEffect(() => {
@@ -60,10 +61,14 @@ export const AuthContextProvider: FC = ({ children }) => {
    * @param password
    */
   const login = async (email: string, password: string) => {
+    setError("");
     setIsloading(true);
 
     try {
-      const { data } = await backend.post("/users/login", { email, password });
+      const { data } = await backend.post("/users/login", {
+        email,
+        password,
+      });
 
       setUser({ email: data.user.email, _id: data.user._id, name: data.name });
       setIsLoggedIn(true);
@@ -73,6 +78,7 @@ export const AuthContextProvider: FC = ({ children }) => {
     } catch (e) {
       console.warn(e);
       setIsloading(false);
+      setError("Invalid Email or Password");
     }
   };
 
@@ -83,6 +89,7 @@ export const AuthContextProvider: FC = ({ children }) => {
         user,
         login,
         isLoading,
+        error,
       }}
     >
       {children}

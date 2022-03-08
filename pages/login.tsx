@@ -8,14 +8,12 @@ import { AuthContext } from "../context";
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, user } = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     login(email, password);
   };
-
-  console.log(user);
 
   return (
     <>
@@ -50,6 +48,7 @@ const Login: NextPage = () => {
             </div>
             <Button>log in</Button>
           </form>
+          <div className="h-[20px] mt-4 text-center text-red-800">{error}</div>
         </section>
       </main>
     </>
