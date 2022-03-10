@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, FC } from "react";
 import { useRouter } from "next/router";
-import { getCookies } from "cookies-next";
+import { getCookies, setCookies } from "cookies-next";
 import { backend } from "../../libs";
 
 export const AuthContext = createContext<any>({});
@@ -69,6 +69,13 @@ export const AuthContextProvider: FC = ({ children }) => {
         email,
         password,
       });
+
+      const options = {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+      };
+      setCookies("jwt", data.jwt, options);
+      setCookies("auth", true, options);
+      setCookies("user", data.user._id, options);
 
       setUser({ email: data.user.email, _id: data.user._id, name: data.name });
       setIsLoggedIn(true);
