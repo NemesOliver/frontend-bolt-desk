@@ -95,14 +95,16 @@ const Home: NextPage = ({ desks, bookings }: any) => {
 export default withAuth(Home);
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const token = getCookie("jwt", { req, res });
+  const token: any = getCookie("jwt", { req, res });
 
   try {
     const { data: desks } = await backend.get("/desks", {
       headers: { Authorization: token }, // Must be set in header due to how SSR works or useSWR can be used instead
     });
 
-    const { data: bookings } = await backend.get("/bookings");
+    const { data: bookings } = await backend.get("/bookings", {
+      headers: { Authorization: token }, // Must be set in header due to how SSR works or useSWR can be used instead
+    });
 
     return { props: { desks, bookings } };
   } catch (error) {

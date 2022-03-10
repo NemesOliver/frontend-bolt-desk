@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent, useContext } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import axios from "axios";
 import { Button, Input } from "../components";
 import { AuthContext } from "../context";
 
